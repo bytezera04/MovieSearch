@@ -23,7 +23,7 @@ The app can be deployed on Linux servers using standard Node.js deployment metho
 ## 💻 Usage
 1. Clone the repository  
    ```bash
-   git clone https://github.com/YOUR_USERNAME/MovieSearch.git
+   git clone https://github.com/bytezera04/MovieSearch.git
    ```  
 2. Install dependencies  
    ```bash
