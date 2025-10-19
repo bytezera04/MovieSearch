@@ -3,6 +3,7 @@
 import { Component } from "lucide-react";
 import { useState, useEffect, FormEvent } from "react";
 import { Movie } from "@/types/movie";
+import { apiFetchMovies } from "@/utils/fetchMovies";
 
 export default function HomePage() {
     return (
@@ -53,24 +54,7 @@ function SearchSection() {
         setLoading(true);
 
         try {
-            const apiKey = process.env.NEXT_PUBLIC_OMDB_API_KEY;
-
-            if (!apiKey) {
-                throw Error("No API key");
-            }
-
-            const searchParams = new URLSearchParams({
-                "apikey": apiKey,
-                "s": encodeURIComponent(search),
-                "page": currentPage.toString(),
-                "type": "movie"
-            });
-
-            const res = await fetch(
-                `https://www.omdbapi.com/?${searchParams.toString()}`
-            );
-
-            const data = await res.json();
+            const data = await apiFetchMovies(search, currentPage);
 
             if (data.Response === "True") {
                 setMovies(data.Search);
